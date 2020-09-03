@@ -1,0 +1,66 @@
+doctype html
+html
+
+  head
+
+    title jQuery Slider
+
+    link(href='./style.css' rel='stylesheet')
+    link(href='./jquery.slider.css' rel='stylesheet')
+
+  body
+
+    .wrap
+
+      h1 jQuery Slider
+
+      label(for='example-1') Example 1
+      input(id='example-1'
+            name='example-1'
+            placeholder='500,000 - 1,000,000'
+            type='number'
+            min='500000'
+            max='1000000'
+            step='1000'
+            data-bubble-font-scale='0.5'
+            data-thumb-scale='0.5'
+            data-thumb-color='#6324b5'
+            data-track-scale='0.5')
+
+      label(for='example-2') Example 2
+      input(id='example-2'
+            name='example-2'
+            placeholder='0 - 10'
+            type='number'
+            min='0'
+            max='10'
+            step='0.05'
+            value='7'
+            data-decimals='2'
+            data-prefix='$'
+            data-bubble-font-scale='0.75'
+            data-thumb-scale='0.75'
+            data-thumb-color='#1c8ec5'
+            data-track-scale='0.75').jquery-slider
+
+      label(for='example-3') Example 3
+      input(id='example-3'
+            name='example-3'
+            placeholder='0 - 100'
+            type='number'
+            value='30'
+            data-toggle-bubble='true'
+            data-thumb-color='#12c7ac').jquery-slider
+
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    script(src='./jquery.slider.js')
+
+    script.
+      $.fn.slider.defaults = {
+        trackColor: '#e7e7e7'
+      };
+
+    script.
+      var example = $("#example-1").slider();
+      example.setValue(750000);
+      example.positionThumb(750000);

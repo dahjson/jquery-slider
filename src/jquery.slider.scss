@@ -1,0 +1,131 @@
+// variables
+$bubble-color: #343A3A;
+$bubble-font-size: 25px;
+$bubble-font-color: #BDC3C3;
+$thumb-size: 50px;
+$thumb-color: #595959;
+$thumb-font-color: #EEE;
+$thumb-font-size: 16px;
+$track-size: 30px;
+$track-color: #E5E5E5;
+
+// reposition element
+@mixin reposition($x: 50%, $y: 50%) {
+  position: absolute;
+  top: $y;
+  left: $x;
+  transform: translate(-50%, -50%);
+}
+
+// clearfix
+@mixin clearfix() {
+  &::before, &::after {
+    display: table;
+    content: '';
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+// input fallback
+.jquery-slider {
+  display: block;
+  margin: 20px auto;
+  padding: 20px;
+  width: 100%;
+  font-size: $thumb-font-size;
+}
+
+// slider wrap
+.jquery-slider__wrap {
+  @include clearfix();
+  position: relative;
+  display: block;
+  margin: 55px auto;
+  width: 100%;
+  height: 55px;
+  user-select: none; // prevent text selection
+}
+
+// slider track
+.jquery-slider__track {
+  position: absolute;
+  top: 50%;
+  right: $track-size + 10px;
+  left: $track-size + 10px;
+  height: 2px;
+  background: $track-color;
+  transform: translate(0, -50%);
+}
+
+// slider thumb
+.jquery-slider__thumb {
+  position: absolute;
+  top: 50%;
+  width: $thumb-size;
+  height: $thumb-size;
+  border-radius: 50%;
+  background: $thumb-color;
+  cursor: ew-resize;
+  transform: translate(0, -50%);
+  span:first-child {
+    @include reposition();
+    color: $thumb-font-color;
+    font-size: $thumb-font-size;
+  }
+}
+
+// slider bubble
+.jquery-slider__bubble {
+  @include reposition(50%, -70%);
+  padding: 15% 25%;
+  border-radius: 7px;
+  background: $bubble-color;
+  color: $bubble-font-color;
+  font-size: $bubble-font-size;
+  span {
+    position: relative;
+  }
+}
+
+// bubble arrow
+.jquery-slider__bubble-arrow {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: $bubble-color;
+  transform: translate(-50%, 0) rotate(45deg);
+}
+
+// slider minus and plus
+.jquery-slider__minus, .jquery-slider__plus {
+  position: relative;
+  top: 50%;
+  width: $track-size;
+  height: $track-size;
+  border: 2px solid $track-color;
+  border-radius: 50%;
+  color: $thumb-color;
+  font-size: 18px;
+  cursor: pointer;
+  transform: translate(0, -50%);
+}
+
+.jquery-slider__minus {
+  float: left;
+}
+
+.jquery-slider__plus {
+  float: right;
+}
+
+.jquery-slider__minus span {
+  @include reposition(50%, 43%); // adjust minus offset
+}
+
+.jquery-slider__plus span {
+  @include reposition(50%, 43%); // adjust plus offset
+}
